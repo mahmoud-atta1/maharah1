@@ -575,23 +575,54 @@ function initContactForm() {
 }
 
 function generateWhatsAppMessage() {
-    // Format text from questionnaire choices
-    const messageLines = [
-        "طلب تمويل جديد - مهارة ون للحلول المالية",
-        "",
-        `الجنسية:\n${applicationData.isSaudi || "سعودي"}`,
-        `نوع الوظيفة:\n${applicationData.employmentType}`,
-        applicationData.companyApproved ? `اعتماد الشركة:\n${applicationData.companyApproved}` : "",
-        `الراتب:\n${applicationData.salary}`,
-        `العقار:\n${applicationData.hasProperty || "لا يوجد"}`,
-        applicationData.earlySettlement ? `السداد المبكر:\n${applicationData.earlySettlement} ريال` : "",
-        `مجموع الالتزامات:\n${applicationData.totalCommitments ? applicationData.totalCommitments + " ريال" : "0 ريال"}`,
-        `الاهتمام:\n${applicationData.interest}`,
-        applicationData.propertyType ? `نوع العقار:\n${applicationData.propertyType}` : "",
-        `المخالفات:\n${applicationData.violations ? applicationData.violations + " ريال" : "0 ريال"}`,
-        "",
-        `الخدمة المتاحة:\n${applicationData.selectedServices.join(" - ")}`
-    ].filter(line => line !== null && line !== undefined).join("\n");
+    const formatAmount = (val) => {
+        if (!val || val === "0") return "0 ريال سعودي";
+        const num = parseInt(val.toString().replace(/,/g, ''), 10);
+        return isNaN(num) ? `${val} ريال سعودي` : `${num.toLocaleString('en-US')} ريال سعودي`;
+    };
+
+    // Format text from questionnaire choices with WhatsApp formatting (*bold*, emojis, dividers)
+    const lines = [];
+    lines.push("🏛️ *طلب تمويل جديد - شركة مهارة وان للتطوير العقاري*");
+    lines.push("----------------------------------------");
+    lines.push("📋 *بيانات التقييم المبدئي:*");
+    lines.push("");
+    lines.push(`🇸🇦 *الجنسية:* ${applicationData.isSaudi || "سعودي"}`);
+    lines.push(`💼 *نوع الوظيفة:* ${applicationData.employmentType || "غير محدد"}`);
+
+    if (applicationData.companyApproved) {
+        lines.push(`🏦 *اعتماد الشركة:* ${applicationData.companyApproved}`);
+    }
+
+    lines.push(`💳 *الراتب:* ${applicationData.salary || "غير محدد"}`);
+    lines.push(`🏡 *العقار:* ${applicationData.hasProperty || "لا يوجد"}`);
+
+    if (applicationData.earlySettlement) {
+        lines.push(`💰 *السداد المبكر:* ${formatAmount(applicationData.earlySettlement)}`);
+    }
+
+    lines.push(`📊 *مجموع الالتزامات:* ${formatAmount(applicationData.totalCommitments)}`);
+    lines.push(`🎯 *الاهتمام الرئيسي:* ${applicationData.interest || "غير محدد"}`);
+
+    if (applicationData.propertyType) {
+        lines.push(`🔑 *غرض العقار:* ${applicationData.propertyType}`);
+    }
+
+    lines.push(`🚨 *المخالفات:* ${formatAmount(applicationData.violations)}`);
+    lines.push("");
+    lines.push("----------------------------------------");
+    lines.push("✨ *الخدمات والحلول المتاحة:*");
+    if (applicationData.selectedServices && applicationData.selectedServices.length > 0) {
+        applicationData.selectedServices.forEach(srv => {
+            lines.push(`• ${srv}`);
+        });
+    } else {
+        lines.push("• تمويل عقاري وسيولة نقدية");
+    }
+    lines.push("----------------------------------------");
+    lines.push("أرغب في الحصول على تفاصيل التمويل واستكمال الإجراءات.");
+
+    const messageLines = lines.join("\n");
 
     // Render Preview
     const previewBox = document.getElementById("summaryPreviewBox");
