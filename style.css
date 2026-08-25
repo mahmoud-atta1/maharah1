@@ -71,6 +71,10 @@ html {
     text-align: right;
 }
 
+html, body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span, a, label, div {
+    font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--bg-light);
