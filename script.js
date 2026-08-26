@@ -604,7 +604,7 @@ function generateWhatsAppMessage() {
 
     lines.push(`مجموع المخالفات: ${applicationData.violations ? applicationData.violations + " ريال" : "0 ريال"}`);
     lines.push("");
-    lines.push(`الخدمة المتاحة: ${applicationData.selectedServices.join(" - ") || "تمويل عقاري وسيولة نقدية"}`);
+    lines.push(`الخدمة المطلوبة: ${applicationData.selectedServices.join(" - ") || "تمويل عقاري وسيولة نقدية"}`);
     lines.push("");
     lines.push("أرجو التواصل معي لتزويدي بتفاصيل التمويل المتاح والإجراءات.");
 
