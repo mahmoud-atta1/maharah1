@@ -581,7 +581,8 @@ function generateWhatsAppMessage() {
     lines.push("السلام عليكم ورحمة الله وبركاته");
     lines.push("طلب تمويل جديد - مهارة وَن للحلول التمويلية");
     lines.push("");
-    lines.push(`الجنسية: ${applicationData.isSaudi || "سعودي"}`);
+    const nationalityVal = (applicationData.isSaudi === "نعم" || applicationData.isSaudi === "سعودي") ? "سعودي" : (applicationData.isSaudi || "سعودي");
+    lines.push(`الجنسية: ${nationalityVal}`);
     lines.push(`نوع الوظيفة: ${applicationData.employmentType || "غير محدد"}`);
 
     if (applicationData.companyApproved) {
