@@ -617,18 +617,27 @@ function generateWhatsAppMessage() {
         previewBox.textContent = messageLines;
     }
 
-    // Create WhatsApp URL
+    // Create Universal WhatsApp URL (Works universally on iOS Safari, Android, and Desktop)
     const encodedMessage = encodeURIComponent(messageLines);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
 
     const whatsappBtn = document.getElementById("whatsappBtn");
     if (whatsappBtn) {
         whatsappBtn.setAttribute("href", whatsappUrl);
         whatsappBtn.onclick = function(e) {
-            // Direct navigation ensures 100% compatibility with iPhone Safari & Android
+            e.preventDefault();
             window.location.href = whatsappUrl;
         };
     }
+
+    // Auto-redirect using universal location navigation (smooth & allowed by iOS Safari and Android without pop-up blocking)
+    setTimeout(() => {
+        try {
+            window.location.href = whatsappUrl;
+        } catch (err) {
+            console.log("Auto-redirect fallback to manual button click", err);
+        }
+    }, 450);
 }
 
 /**
