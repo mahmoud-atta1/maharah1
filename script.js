@@ -579,7 +579,7 @@ function generateWhatsAppMessage() {
     // Format text from questionnaire choices - Clean text without symbols/emojis
     const lines = [];
     lines.push("السلام عليكم ورحمة الله وبركاته");
-    lines.push("طلب تمويل جديد - شركة مهارة وان للتطوير العقاري والحلول المالية");
+    lines.push("طلب تمويل جديد - مهارة وَن للحلول التمويلية");
     lines.push("");
     lines.push(`الجنسية: ${applicationData.isSaudi || "سعودي"}`);
     lines.push(`نوع الوظيفة: ${applicationData.employmentType || "غير محدد"}`);
