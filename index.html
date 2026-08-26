@@ -371,7 +371,7 @@
                                 <div class="input-subgroup hidden" id="earlySettlementGroup">
                                     <label for="earlySettlementInput" class="form-label">كم السداد المبكر؟ (بالريال السعودي)</label>
                                     <div class="input-wrapper">
-                                        <input type="number" id="earlySettlementInput" class="form-input" placeholder="مثال: 100000" min="0" dir="ltr">
+                                        <input type="text" inputmode="numeric" id="earlySettlementInput" class="form-input numeric-input" placeholder="مثال: 100000" dir="ltr">
                                         <span class="input-unit">ريال</span>
                                     </div>
                                     <span class="error-msg" id="earlySettlementError">يرجى إدخال مبلغ السداد المبكر للمتابعة.</span>
@@ -385,7 +385,7 @@
                                 <div class="form-group">
                                     <label for="commitmentsInput" class="form-label">مجموع الالتزامات بالريال السعودي</label>
                                     <div class="input-wrapper">
-                                        <input type="number" id="commitmentsInput" class="form-input" placeholder="مثال: 150000" min="0" dir="ltr">
+                                        <input type="text" inputmode="numeric" id="commitmentsInput" class="form-input numeric-input" placeholder="مثال: 150000" dir="ltr">
                                         <span class="input-unit">ريال</span>
                                     </div>
                                     <p class="form-hint">يشمل القروض والأقساط الشهرية القائمة حالياً.</p>
@@ -491,7 +491,7 @@
                                 <div class="form-group">
                                     <label for="violationsInput" class="form-label">مجموع المخالفات بالريال السعودي</label>
                                     <div class="input-wrapper">
-                                        <input type="number" id="violationsInput" class="form-input" placeholder="0 إذا لا توجد مخالفات" min="0" value="0" dir="ltr">
+                                        <input type="text" inputmode="numeric" id="violationsInput" class="form-input numeric-input" placeholder="0 إذا لا توجد مخالفات" value="0" dir="ltr">
                                         <span class="input-unit">ريال</span>
                                     </div>
                                     <p class="form-hint">إذا لا توجد مخالفات، اترك القيمة 0 وانقر التالي.</p>

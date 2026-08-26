@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
     initApplicationFlow();
     initContactForm();
+    initNumericInputConversion();
 });
 
 /* ==========================================================================
@@ -628,4 +629,29 @@ function generateWhatsAppMessage() {
     setTimeout(() => {
         window.open(whatsappUrl, "_blank");
     }, 400);
+}
+
+/**
+ * Real-time conversion helper: Accepts BOTH Arabic (٠١٢٣٤٥٦٧٨٩) and English (0123456789) numerals.
+ * Automatically converts Eastern Arabic digits to standard digits in real-time.
+ */
+function initNumericInputConversion() {
+    const numericInputs = document.querySelectorAll(".numeric-input");
+    numericInputs.forEach(input => {
+        input.addEventListener("input", (e) => {
+            let val = e.target.value;
+            if (!val) return;
+
+            // Convert Eastern Arabic numbers (٠-٩) to (0-9)
+            const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            for (let i = 0; i < 10; i++) {
+                val = val.replace(new RegExp(arabicDigits[i], 'g'), i.toString());
+            }
+
+            // Strip out non-numeric characters
+            val = val.replace(/[^\d]/g, '');
+
+            e.target.value = val;
+        });
+    });
 }
