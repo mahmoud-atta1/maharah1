@@ -1005,22 +1005,16 @@ section {
 }
 
 .option-icon.icon-sr {
-    background: #FFFBEB;
-    border-color: #FCD34D;
-    color: var(--accent-gold);
-}
-
-.sr-badge-text {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--accent-gold);
-    line-height: 1;
+    background: #ECFDF5;
+    border-color: #A7F3D0;
+    color: #006C35;
 }
 
 .btn-option:hover .icon-sr,
 .btn-option.selected .icon-sr {
-    background: #FFEDD5;
-    border-color: var(--accent-gold);
+    background: #D1FAE5;
+    border-color: #059669;
+    color: #006C35;
 }
 
 .option-icon.icon-error-svg {
