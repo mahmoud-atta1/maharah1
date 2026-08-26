@@ -490,9 +490,9 @@ function matchServices() {
 
 function renderMatchedServices() {
     const grid = document.getElementById("matchedServicesGrid");
-    grid.innerHTML = "";
-
     const services = matchServices();
+    if (!grid) return;
+    grid.innerHTML = "";
 
     services.forEach(srv => {
         const card = document.createElement("div");
