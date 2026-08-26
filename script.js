@@ -624,25 +624,11 @@ function generateWhatsAppMessage() {
     const whatsappBtn = document.getElementById("whatsappBtn");
     if (whatsappBtn) {
         whatsappBtn.setAttribute("href", whatsappUrl);
-        whatsappBtn.onclick = function() {
-            const noticeBox = document.getElementById("waActionNotice");
-            if (noticeBox) {
-                noticeBox.className = "wa-action-notice wa-action-success";
-                noticeBox.innerHTML = `
-                    <div class="notice-icon">✅</div>
-                    <div class="notice-text">
-                        <strong>تم التوجيه إلى الواتساب بنجاح!</strong>
-                        <p>تأكد الآن من <strong>الضغط على زر «إرسال 📤» داخل تطبيق الواتساب</strong> ليصل طلبك مباشرة لممثل الخدمة.</p>
-                    </div>
-                `;
-            }
+        whatsappBtn.onclick = function(e) {
+            // Direct navigation ensures 100% compatibility with iPhone Safari & Android
+            window.location.href = whatsappUrl;
         };
     }
-
-    // Automatically redirect/open WhatsApp with the pre-filled message
-    setTimeout(() => {
-        window.open(whatsappUrl, "_blank");
-    }, 400);
 }
 
 /**
