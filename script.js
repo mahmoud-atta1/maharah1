@@ -14,6 +14,7 @@ const applicationData = {
     salary: "",               // "أقل من 7,000 ريال" or "7,000 ريال أو أكثر"
     hasProperty: null,       // "يوجد" or "لا يوجد"
     earlySettlement: "",      // SAR amount string
+    housingSupport: "",       // Housing Support choice
     totalCommitments: "",     // SAR amount string
     interest: "",             // "العقار", "السيولة", "السداد", "جميع ما سبق"
     propertyType: "",         // "سكن" or "استثمار" (if applicable)
@@ -140,19 +141,22 @@ function recalculateStepSequence() {
     // Step 5: Property
     stepSequence.push(5);
 
-    // Step 6: Commitments
+    // Step 6: Housing Support
     stepSequence.push(6);
 
-    // Step 7: Main Interest
+    // Step 7: Commitments
     stepSequence.push(7);
 
-    // Step 8: Property Type (ONLY if interest includes Real Estate)
+    // Step 8: Main Interest
+    stepSequence.push(8);
+
+    // Step 9: Property Type (ONLY if interest includes Real Estate)
     if (applicationData.interest === "العقار" || applicationData.interest === "جميع ما سبق") {
-        stepSequence.push(8);
+        stepSequence.push(9);
     }
 
-    // Step 9: Violations
-    stepSequence.push(9);
+    // Step 10: Violations
+    stepSequence.push(10);
 }
 
 /**
@@ -181,6 +185,7 @@ function handleOptionSelection(button, field, value) {
         } else {
             earlySettlementGroup.classList.add("hidden");
             applicationData.earlySettlement = "";
+    applicationData.housingSupport = "";
             document.getElementById("earlySettlementInput").value = "";
         }
     }
@@ -195,7 +200,7 @@ function handleOptionSelection(button, field, value) {
     }
 
     // Auto-advance for simple choice steps if not an input step
-    if (currentStepNumber !== 4 && currentStepNumber !== 5 && currentStepNumber !== 6 && currentStepNumber !== 9) {
+    if (currentStepNumber !== 4 && currentStepNumber !== 5 && currentStepNumber !== 7 && currentStepNumber !== 10) {
         setTimeout(() => {
             advanceToNextStep();
         }, 220);
@@ -301,38 +306,44 @@ function handleNextStep() {
         }
     }
 
-    if (currentStepNumber === 6) {
+    if (currentStepNumber === 6 && !applicationData.housingSupport) {
+        const err = document.getElementById("step6Error");
+        if (err) err.classList.add("visible");
+        return;
+    }
+
+    if (currentStepNumber === 7) {
         const input = document.getElementById("commitmentsInput");
         const val = input.value.trim();
         if (!val) {
             input.classList.add("invalid");
             input.focus();
-            const err = document.getElementById("step6Error");
+            const err = document.getElementById("step7Error");
             if (err) err.classList.add("visible");
             return;
         }
         applicationData.totalCommitments = val;
     }
 
-    if (currentStepNumber === 7 && !applicationData.interest) {
-        const err = document.getElementById("step7Error");
-        if (err) err.classList.add("visible");
-        return;
-    }
-
-    if (currentStepNumber === 8 && !applicationData.propertyType) {
+    if (currentStepNumber === 8 && !applicationData.interest) {
         const err = document.getElementById("step8Error");
         if (err) err.classList.add("visible");
         return;
     }
 
-    if (currentStepNumber === 9) {
+    if (currentStepNumber === 9 && !applicationData.propertyType) {
+        const err = document.getElementById("step9Error");
+        if (err) err.classList.add("visible");
+        return;
+    }
+
+    if (currentStepNumber === 10) {
         const input = document.getElementById("violationsInput");
         const val = input.value.trim();
         if (val === "") {
             input.classList.add("invalid");
             input.focus();
-            const err = document.getElementById("step9Error");
+            const err = document.getElementById("step10Error");
             if (err) err.classList.add("visible");
             return;
         }
@@ -624,6 +635,10 @@ function generateWhatsAppMessage() {
 
     if (applicationData.earlySettlement) {
         lines.push(`مبلغ السداد المبكر: ${applicationData.earlySettlement} ريال`);
+    }
+
+    if (applicationData.housingSupport) {
+        lines.push(`الدعم السكني: ${applicationData.housingSupport}`);
     }
 
     lines.push(`مجموع الالتزامات: ${applicationData.totalCommitments ? applicationData.totalCommitments + " ريال" : "0 ريال"}`);

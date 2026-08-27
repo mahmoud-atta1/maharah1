@@ -322,7 +322,7 @@
 
                             <!-- STEP 5: Property -->
                             <div class="question-step" data-step="5" id="step-5">
-                                <h3 class="question-title">هل يوجد عقار باسمك أو مرهون؟</h3>
+                                <h3 class="question-title">هل يوجد عقار بأسمك أو مرهون؟</h3>
                                 <div class="options-grid grid-2 mb-4">
                                     <button type="button" class="btn-option property-opt" data-field="hasProperty" data-value="يوجد">
                                         <div class="option-icon">
@@ -361,8 +361,65 @@
                                 <span class="error-msg" id="step5Error">يرجى اختيار خيار العقار أولاً للمتابعة.</span>
                             </div>
 
-                            <!-- STEP 6: Total Commitments -->
+                            <!-- STEP 6: Housing Support -->
                             <div class="question-step" data-step="6" id="step-6">
+                                <h3 class="question-title">هل أنت مستحق للدعم السكني؟</h3>
+                                <div class="options-grid grid-2">
+                                    <button type="button" class="btn-option" data-field="housingSupport" data-value="مستحق لدعم سكني">
+                                        <div class="option-icon">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                                <polyline points="9 22 9 12 15 12 15 22"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-text">
+                                            <span class="option-label">مستحق لدعم سكني</span>
+                                            <span class="option-sub">مستحق لبرامج الدعم السكني</span>
+                                        </div>
+                                    </button>
+
+                                    <button type="button" class="btn-option" data-field="housingSupport" data-value="مستحق لدعم إعزاز (خاص بمنسوبي وزارة الدفاع)">
+                                        <div class="option-icon">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-text">
+                                            <span class="option-label">مستحق لدعم إعزاز</span>
+                                            <span class="option-sub">خاص بمنسوبي وزارة الدفاع</span>
+                                        </div>
+                                    </button>
+
+                                    <button type="button" class="btn-option" data-field="housingSupport" data-value="مستحق لدعم سكني وإعزاز معاً">
+                                        <div class="option-icon">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-text">
+                                            <span class="option-label">مستحق للاثنين معاً</span>
+                                            <span class="option-sub">دعم سكني + دعم إعزاز (عسكري)</span>
+                                        </div>
+                                    </button>
+
+                                    <button type="button" class="btn-option" data-field="housingSupport" data-value="غير مستحق للدعم السكني">
+                                        <div class="option-icon">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                                            </svg>
+                                        </div>
+                                        <div class="option-text">
+                                            <span class="option-label">غير مستحق للدعم السكني</span>
+                                            <span class="option-sub">تمويل بدون دعم سكني</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <span class="error-msg" id="step6Error">يرجى اختيار حالة الدعم السكني للمتابعة.</span>
+                            </div>
+
+                            <!-- STEP 7: Total Commitments -->
+                            <div class="question-step" data-step="7" id="step-7">
                                 <h3 class="question-title">ما إجمالي التزاماتك المالية الأخرى؟</h3>
                                 <div class="form-group">
                                     <label for="commitmentsInput" class="form-label">مجموع الالتزامات بالريال السعودي</label>
@@ -371,12 +428,12 @@
                                         <span class="input-unit">ريال</span>
                                     </div>
                                     <p class="form-hint">أدخل إجمالي المبلغ المستحق في جميع القروض والالتزامات الأخرى، وليس الأقساط الشهرية.</p>
-                                    <span class="error-msg" id="step6Error">يرجى إدخال مجموع الالتزامات للمتابعة.</span>
+                                    <span class="error-msg" id="step7Error">يرجى إدخال مجموع الالتزامات للمتابعة.</span>
                                 </div>
                             </div>
 
-                            <!-- STEP 7: Main Interest -->
-                            <div class="question-step" data-step="7" id="step-7">
+                            <!-- STEP 8: Main Interest -->
+                            <div class="question-step" data-step="8" id="step-8">
                                 <h3 class="question-title">حدد احتياجك من الخيارات التالية :</h3>
                                 <div class="options-grid grid-2">
                                     <button type="button" class="btn-option" data-field="interest" data-value="العقار">
@@ -431,11 +488,11 @@
                                         </div>
                                     </button>
                                 </div>
-                                <span class="error-msg" id="step7Error">يرجى اختيار اهتمامك الرئيسي للمتابعة.</span>
+                                <span class="error-msg" id="step8Error">يرجى اختيار اهتمامك الرئيسي للمتابعة.</span>
                             </div>
 
-                            <!-- STEP 8: Property Type (Conditional) -->
-                            <div class="question-step" data-step="8" id="step-8">
+                            <!-- STEP 9: Property Type (Conditional) -->
+                            <div class="question-step" data-step="9" id="step-9">
                                 <h3 class="question-title">العقار سكن أو استثمار؟</h3>
                                 <div class="options-grid grid-2">
                                     <button type="button" class="btn-option" data-field="propertyType" data-value="سكن">
@@ -464,11 +521,11 @@
                                         </div>
                                     </button>
                                 </div>
-                                <span class="error-msg" id="step8Error">يرجى اختيار غرض العقار للمتابعة.</span>
+                                <span class="error-msg" id="step9Error">يرجى اختيار غرض العقار للمتابعة.</span>
                             </div>
 
-                            <!-- STEP 9: Violations -->
-                            <div class="question-step" data-step="9" id="step-9">
+                            <!-- STEP 10: Violations -->
+                            <div class="question-step" data-step="10" id="step-10">
                                 <h3 class="question-title">كم مجموع مخالفاتك المرورية المستحقة للسداد من تاريخ 4-4-2024م</h3>
                                 <div class="form-group">
                                     <label for="violationsInput" class="form-label">مجموع المخالفات بالريال السعودي</label>
@@ -477,7 +534,7 @@
                                         <span class="input-unit">ريال</span>
                                     </div>
                                     <p class="form-hint">إذا لا توجد مخالفات، اترك القيمة 0 وانقر التالي.</p>
-                                    <span class="error-msg" id="step9Error">يرجى إدخال قيمة المخالفات (أو 0).</span>
+                                    <span class="error-msg" id="step10Error">يرجى إدخال قيمة المخالفات (أو 0).</span>
                                 </div>
                             </div>
 
