@@ -195,7 +195,7 @@ function handleOptionSelection(button, field, value) {
     }
 
     // Auto-advance for simple choice steps if not an input step
-    if (currentStepNumber !== 5 && currentStepNumber !== 6 && currentStepNumber !== 9) {
+    if (currentStepNumber !== 4 && currentStepNumber !== 5 && currentStepNumber !== 6 && currentStepNumber !== 9) {
         setTimeout(() => {
             advanceToNextStep();
         }, 220);
@@ -220,8 +220,11 @@ function checkRejectionConditions() {
     }
 
     // Condition 2: Salary < 7,000 SAR
-    if (applicationData.salary === "أقل من 7,000 ريال") {
-        return true;
+    if (applicationData.salary) {
+        const salaryNum = parseFloat(String(applicationData.salary).replace(/[^\d.]/g, ''));
+        if (!isNaN(salaryNum) && salaryNum < 7000) {
+            return true;
+        }
     }
 
     return false;
@@ -248,8 +251,33 @@ function handleNextStep() {
         return;
     }
 
-    if (currentStepNumber === 4 && !applicationData.salary) {
-        return;
+    if (currentStepNumber === 4) {
+        const input = document.getElementById("salaryInput");
+        const val = input.value.trim();
+        if (!val) {
+            input.classList.add("invalid");
+            input.focus();
+            const err = document.getElementById("step4Error");
+            if (err) err.classList.add("visible");
+            return;
+        }
+
+        const salaryNum = parseFloat(val.replace(/[^\d.]/g, ''));
+        if (isNaN(salaryNum) || salaryNum <= 0) {
+            input.classList.add("invalid");
+            input.focus();
+            const err = document.getElementById("step4Error");
+            if (err) err.classList.add("visible");
+            return;
+        }
+
+        applicationData.salary = val;
+
+        // If salary is less than 7,000 SAR -> Rejection!
+        if (salaryNum < 7000) {
+            showRejectionScreen();
+            return;
+        }
     }
 
     if (currentStepNumber === 5) {
@@ -540,6 +568,8 @@ function resetApplication() {
 
     // Clear form inputs & selections
     document.querySelectorAll(".btn-option").forEach(btn => btn.classList.remove("selected"));
+    const salaryInp = document.getElementById("salaryInput");
+    if (salaryInp) salaryInp.value = "";
     document.getElementById("earlySettlementInput").value = "";
     document.getElementById("earlySettlementGroup").classList.add("hidden");
     document.getElementById("commitmentsInput").value = "";
@@ -589,7 +619,7 @@ function generateWhatsAppMessage() {
         lines.push(`اعتماد الشركة لدى البنك: ${applicationData.companyApproved}`);
     }
 
-    lines.push(`الراتب الصافي: ${applicationData.salary || "غير محدد"}`);
+    lines.push(`الراتب الصافي: ${applicationData.salary ? applicationData.salary + " ريال" : "غير محدد"}`);
     lines.push(`العقار: ${applicationData.hasProperty || "لا يوجد"}`);
 
     if (applicationData.earlySettlement) {

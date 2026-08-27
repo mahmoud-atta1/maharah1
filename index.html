@@ -309,36 +309,14 @@
                             <!-- STEP 4: Salary -->
                             <div class="question-step" data-step="4" id="step-4">
                                 <h3 class="question-title">كم الراتب الذي ينزل في الصراف؟</h3>
-                                <div class="options-grid grid-2">
-                                    <button type="button" class="btn-option" data-field="salary" data-value="أقل من 7,000 ريال">
-                                        <div class="option-icon icon-sr">
-                                             <svg viewBox="0 0 100 100" width="26" height="26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="شعار الريال السعودي الرسمي">
-                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M38 12L48 6V50L38 56V12ZM62 6L72 0V44L62 50V6Z"/>
-                                                 <path d="M18 42L84 16V28L18 54V42Z"/>
-                                                 <path d="M18 60L84 34V46L18 72V60Z"/>
-                                                 <path d="M58 66L84 56V67L58 77V66Z"/>
-                                             </svg>
-                                        </div>
-                                        <div class="option-text">
-                                            <span class="option-label">أقل من 7,000 ريال</span>
-                                            <span class="option-sub">الراتب الصافي أقل من الحد الأدنى</span>
-                                        </div>
-                                    </button>
-
-                                    <button type="button" class="btn-option" data-field="salary" data-value="7,000 ريال أو أكثر">
-                                        <div class="option-icon icon-sr">
-                                             <svg viewBox="0 0 100 100" width="26" height="26" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="شعار الريال السعودي الرسمي">
-                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M38 12L48 6V50L38 56V12ZM62 6L72 0V44L62 50V6Z"/>
-                                                 <path d="M18 42L84 16V28L18 54V42Z"/>
-                                                 <path d="M18 60L84 34V46L18 72V60Z"/>
-                                                 <path d="M58 66L84 56V67L58 77V66Z"/>
-                                             </svg>
-                                        </div>
-                                        <div class="option-text">
-                                            <span class="option-label">7,000 ريال أو أكثر</span>
-                                            <span class="option-sub">الراتب الصافي يلبي متطلبات التمويل</span>
-                                        </div>
-                                    </button>
+                                <div class="form-group">
+                                    <label for="salaryInput" class="form-label">الراتب الصافي بالريال السعودي</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" inputmode="numeric" id="salaryInput" class="form-input numeric-input" placeholder="مثال: 8,000" dir="ltr">
+                                        <span class="input-unit">ريال</span>
+                                    </div>
+                                    <p class="form-hint">الحد الأدنى لمتطلبات التمويل هو 7,000 ريال.</p>
+                                    <span class="error-msg" id="step4Error">يرجى إدخال مبلغ الراتب الصافي للمتابعة.</span>
                                 </div>
                             </div>
 
