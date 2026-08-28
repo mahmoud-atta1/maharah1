@@ -466,19 +466,19 @@ function matchServices() {
     if (interest === "العقار") {
         if (propertyType === "سكن") {
             services.push({
-                title: "تمويل فيلا دوبلكس للسكن",
-                desc: "حلول تمويل عقاري ميسرة لشراء أو بناء فيلا سكنية عائلية.",
+                title: "تمويل فلة دوبلكس للسكن",
+                desc: "حلول تمويل عقاري ميسرة لشراء أو بناء فلة سكنية عائلية.",
                 icon: houseIcon
             });
         } else if (propertyType === "استثمار") {
             services.push({
-                title: "تمويل فيلا دوبلكس للاستثمار",
+                title: "تمويل فلة دوبلكس للاستثمار",
                 desc: "خيارات استثمارية عقارية مخصصة وإمكانية الإدارة والتأجير.",
                 icon: buildingIcon
             });
         } else {
             services.push({
-                title: "تمويل فيلا دوبلكس للسكن والاستثمار",
+                title: "تمويل فلة دوبلكس للسكن والاستثمار",
                 desc: "حلول تمويل عقاري مرنة تناسب تطلعاتك.",
                 icon: houseIcon
             });
@@ -498,13 +498,13 @@ function matchServices() {
     } else if (interest === "جميع ما سبق") {
         if (propertyType === "سكن") {
             services.push({
-                title: "تمويل فيلا دوبلكس للسكن",
+                title: "تمويل فلة دوبلكس للسكن",
                 desc: "خيارات السكن العقاري الميسرة.",
                 icon: houseIcon
             });
         } else {
             services.push({
-                title: "تمويل فيلا دوبلكس للاستثمار",
+                title: "تمويل فلة دوبلكس للاستثمار",
                 desc: "خيارات تمويل الاستثمار العقاري.",
                 icon: buildingIcon
             });
